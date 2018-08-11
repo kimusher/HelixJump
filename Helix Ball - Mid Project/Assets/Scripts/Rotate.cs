@@ -39,7 +39,9 @@ public class Rotate : MonoBehaviour
         //Get how far the mouse has moved by using the Input.GetAxis().
         float rotationX = Input.GetAxis("Mouse X") * sensitivityX;
 
+#pragma warning disable CS0618 // Type or member is obsolete
         transform.RotateAround(Vector3.up, -Mathf.Deg2Rad * rotationX);
+#pragma warning restore CS0618 // Type or member is obsolete
 
     }
 

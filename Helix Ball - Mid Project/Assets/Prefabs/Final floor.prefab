@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4763152225911356}
   m_Layer: 0
   m_Name: Final floor
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

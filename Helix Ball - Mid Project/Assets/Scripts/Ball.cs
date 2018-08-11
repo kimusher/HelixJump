@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.Internal.Experimental.UIElements;
+﻿using System;
+
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 // ReSharper disable All
 // ReSharper disable All
@@ -14,6 +14,7 @@ public class Ball : MonoBehaviour
     public float gravityScale = 1.0f;
     private bool isForce = false;
     private bool isGameOver = false;
+    public static int scoreInRow = 0;
 
     void Start()
     {
@@ -35,21 +36,50 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
+
         if (isForce)
         {
             force();
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision other)
     {
         isForce = true;
 
-        if (collision.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy")
         {
+            //Fail();
             isGameOver = true;
         }
+
+        else if (other.gameObject.tag == "Helix")
+        {
+            scoreInRow = 0;
+            Debug.Log(string.Format("Score in row: {0}", scoreInRow));
+
+        }
+
+        else if (other.gameObject.tag == "Finish")
+        {
+            //Win();
+            scoreInRow = 0;
+            Debug.Log(string.Format("Score in row: {0}", scoreInRow));
+            Debug.Log("Finish , you are win");
+        }
+
+        //if (other.gameObject.tag == "PassPlatform" && other.gameObje)
+        //{
+        //    String floorName = other.transform.parent.name;
+        //    GameObject floor = GameObject.Find(floorName);
+
+        //    Destroy(floor);
+
+        //    Debug.Log(string.Format("{0} DESTROYED", floorName));
+        //}
     }
+
+
 
     private void OnGUI()
     {
